@@ -41,7 +41,7 @@ Git · Bitbucket · GitHub · Appwrite · VS Code
 
 🔴 **CmrVibeWaves** – A live broadcasting portal using HTML, CSS, JS, PHP, MySQL  
 🚉 **Railway Reservation DB** – Designed normalized schema and optimized queries in MySQL  
-🧠 **LUNA Project** – Backend module development in JavaScript + AWS for a health-tech web app  
+<! --🧠 **LUNA Project** – Backend module development in JavaScript + AWS for a health-tech web app -->
 🔗 **GitHub:** [github.com/Praveen-C05](https://github.com/Praveen-C05)
 
 ---
@@ -59,7 +59,7 @@ As an aspiring **Full Stack Developer** and **Cloud Architect**, I aim to:
 
 ## 📫 Get In Touch
 
-📧 Email: mr5praveen55@gmail.com  
+📧 Email: mr5praveen55@gmail.com.
 🔗 LinkedIn: [linkedin.com/in/praveen-p](https://www.linkedin.com/in/mr5praveen/)
 📁 Download CV: [Praveen-P_cv.pdf](./public/projects/PRAVEEN%20P_resume.pdf)
 
