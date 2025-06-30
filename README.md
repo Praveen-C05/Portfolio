@@ -17,14 +17,14 @@ I work with technologies like **JavaScript**, **Node.js**, **Express**, **React*
 
 Currently, I’m interning as a **Backend Developer** at **Resolute AI**, contributing to health-tech platforms using **DynamoDB**, **AWS Lambda**, and **RESTful services**.
 
-I hold certifications in **Cybersecurity**, **Web Development**, and **Cloud Computing** from **IBM** and **NPTEL (IIT Kharagpur)**.
+I hold certifications in **Cybersecurity**, **Web Development** from **IBM** and **Cloud Computing** from  **NPTEL (IIT Kharagpur)**.
 
 ---
 
 ## 🛠️ Tools & Technologies
 
 **Languages**  
-JavaScript · Java · PHP · C++ · SQL  
+JavaScript · Java · PHP · C · SQL  
 
 **Frameworks & Libraries**  
 React.js · Express.js · Mongoose · Dynamoose  
@@ -41,7 +41,7 @@ Git · Bitbucket · GitHub · Appwrite · VS Code
 
 🔴 **CmrVibeWaves** – A live broadcasting portal using HTML, CSS, JS, PHP, MySQL  
 🚉 **Railway Reservation DB** – Designed normalized schema and optimized queries in MySQL  
-🧠 **LUNA Project** – Backend module development in Express.js + AWS for a health-tech web app  
+🧠 **LUNA Project** – Backend module development in JavaScript + AWS for a health-tech web app  
 🔗 **GitHub:** [github.com/Praveen-C05](https://github.com/Praveen-C05)
 
 ---
@@ -53,14 +53,14 @@ As an aspiring **Full Stack Developer** and **Cloud Architect**, I aim to:
 - Design scalable, secure, cloud-native applications
 - Deepen my expertise in serverless architecture & microservices
 - Contribute to open-source and impactful tech communities
-- Stay updated with modern tools, frameworks, and DevOps practices
+- Stay updated with modern tools and frameworks
 
 ---
 
 ## 📫 Get In Touch
 
 📧 Email: mr5praveen55@gmail.com  
-🔗 LinkedIn: [linkedin.com/in/praveen-p-cloud](https://www.linkedin.com/in/praveen-p-cloud/)  
+🔗 LinkedIn: [linkedin.com/in/praveen-p](https://www.linkedin.com/in/mr5praveen/)
 📁 Download CV: [Praveen-P_cv.pdf](./public/projects/PRAVEEN%20P_resume.pdf)
 
 
