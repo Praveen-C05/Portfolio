@@ -59,7 +59,7 @@ As an aspiring **Full Stack Developer** and **Cloud Architect**, I aim to:
 
 ## 📫 Get In Touch
 
-📧 Email: praveenc05official@gmail.com  
+📧 Email: mr5praveen55@gmail.com  
 🔗 LinkedIn: [linkedin.com/in/praveen-p-cloud](https://www.linkedin.com/in/praveen-p-cloud/)  
 📁 Download CV: [Praveen-P_cv.pdf](./public/projects/PRAVEEN%20P_resume.pdf)
 
