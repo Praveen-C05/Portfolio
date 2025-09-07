@@ -36,7 +36,7 @@ const projects = [
     title: "Railway Reservation System",
     description:
       "Relational database system for managing train reservations built using MySQL with ER design and normalization.",
-    image: "/public/projects/railway_er_diagram.png",
+    image: "/projects/railway_er_diagram.png",
     tags: ["MySQL", "Database Design", "SQL"],
     demoUrl: "https://github.com/Praveen-C05/railway-reservation-DBMS.git",
     githubUrl: "https://github.com/Praveen-C05/railway-reservation-DBMS.git",
@@ -48,7 +48,7 @@ const projects = [
       `Hi 👋, I'm Praveen P
 🚀 Full Stack Developer | ☁️ Cloud Enthusiast
 Currently interning at Pytheos Health Systems Pvt. Ltd. building modern UIs and learning cloud-native development.`,
-    image: "/public/projects/github.png",
+    image: "/projects/github.png",
     tags: ["GitHub", "Portfolio", "React", "Tailwind CSS", "Full Stack"],
     demoUrl: "https://github.com/Praveen-C05",
     githubUrl: "https://github.com/Praveen-C05",
