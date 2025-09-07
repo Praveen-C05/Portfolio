@@ -41,20 +41,38 @@ const skills = [
   // { name: "Docker", level: 40, category: "other" },
   { name: "AWS", level: 60, category: "other" }, 
   { name: "Linux", level: 55, category: "other" },
-  { name: "CyberSecurity", level: 35, category: "other" }
+  { name: "CyberSecurity", level: 35, category: "other" },
+
+  // Soft Skills
+  { name: "Communication", level: 90, category: "soft skills" },
+  { name: "Teamwork", level: 85, category: "soft skills" },
+  { name: "Problem-Solving", level: 80, category: "soft skills" },
+  // { name: "Adaptability", level: 75, category: "soft skills" },
+  { name: "Time Management", level: 70, category: "soft skills" },
+  { name: "Critical Thinking", level: 65, category: "soft skills" },
+  { name: "Leadership", level: 60, category: "soft skills" },
+  { name: "Creativity", level: 55, category: "soft skills" },
+  { name: "Emotional Intelligence", level: 50, category: "soft skills" },
+  { name: "Work Ethic", level: 95, category: "soft skills" },
+  { name: "Collaboration", level: 85, category: "soft skills" },
+  { name: "Adaptability", level: 80, category: "soft skills" },
+  
 
 
 
 ];
 
-const categories = ["all", "frontend", "backend", "tools", "databases", "other"];
+const categories = ["all", "frontend", "backend", "tools", "databases", "soft skills", "other"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
+  let filteredSkills;
+  if (activeCategory === "all") {
+    filteredSkills = skills.filter(skill => skill.level > 75);
+  } else {
+    filteredSkills = skills.filter(skill => skill.category === activeCategory);
+  }
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
