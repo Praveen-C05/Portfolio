@@ -19,14 +19,14 @@ export const AboutSection = () => {
              
             I’m Praveen P, a BCA Cloud Computing student at CMR University,
              focused on building scalable backend systems and cloud-integrated web applications. 
-             With experience in JavaScript, Node.js, Express, React, MongoDB, and AWS, 
+             With experience in JavaScript, Node.js, Express, React, MongoDB and AWS, 
              I develop efficient APIs and modern, cloud-ready solutions.
             </p>
 
             <p className="text-muted-foreground">
               Currently working as a Backend Developer Intern at Pytheos Health Systems Pvt. Ltd, 
-              I contribute to health-tech platforms using DynamoDB, Lambda, and RESTful services. 
-              I hold certifications in Cybersecurity, Web Development, and Cloud Computing from IBM and NPTEL (IIT Kharagpur).
+              I contribute to health-tech platforms using DynamoDB, Lambda and RESTful services. 
+              I hold certifications in Cybersecurity, Web Development and Cloud Computing from IBM and NPTEL (IIT Kharagpur).
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -90,8 +90,8 @@ export const AboutSection = () => {
                   <h4 className="font-semibold text-lg">Professional Goals</h4>
                   <p className="text-muted-foreground">
                     As an aspiring Backend Developer and Cloud Architect, my goal is to design scalable, 
-                    secure, and cloud-native applications that solve real-world problems. 
-                    I aim to deepen my expertise in serverless architecture, microservices, and DevOps practices,
+                    secure and cloud-native applications that solve real-world problems. 
+                    I aim to deepen my expertise in serverless architecture, microservices and DevOps practices,
                      while contributing to impactful tech teams and open-source communities.
                       I believe in continuous learning and strive to stay updated with modern frameworks and industry trends.
 

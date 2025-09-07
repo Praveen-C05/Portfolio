@@ -5,7 +5,7 @@ const projects = [
     id: 1,
     title: "LUNA Health System",
     description:
-      "Backend APIs built using Node.js, Express, DynamoDB, and AWS for a digital healthcare application.",
+      "Backend APIs built using Node.js, Express, DynamoDB and AWS for a digital healthcare application.",
     image: "/projects/luna.png",
     tags: ["Node.js", "Express", "AWS", "DynamoDB"],
     demoUrl: "#",
@@ -15,7 +15,7 @@ const projects = [
     id: 2,
     title: "CmrVibeWaves Broadcasting Portal",
     description:
-      "A dynamic broadcasting platform developed using HTML, CSS, JavaScript, PHP, and MySQL.",
+      "A dynamic broadcasting platform developed using HTML, CSS, JavaScript, PHP and MySQL.",
     image: "/projects/cmrwave.png",
     tags: ["PHP", "MySQL", "JavaScript", "HTML/CSS"],
     demoUrl: "https://github.com/Praveen-C05/Dynamic-webPage",
@@ -25,7 +25,7 @@ const projects = [
     id: 3,
     title: "React Movie App",
     description:
-      "A movie discovery app using TMDB API, React, Appwrite backend, and environment-secure configurations.",
+      "A movie discovery app using TMDB API, React, Appwrite backend and environment-secure configurations.",
     image: "/projects/react-movie.png",
     tags: ["React", "Appwrite", "TMDB", "Axios"],
     demoUrl: "https://github.com/Praveen-C05/react",

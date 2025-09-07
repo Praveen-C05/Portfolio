@@ -22,7 +22,7 @@ export const HeroSection = () => {
 
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
             Motivated BCA Cloud Computing student with a strong foundation in programming,
-             web development, and databases. Experienced in real-world projects like a broadcasting portal and railway reservation system. 
+             web development and databases. Experienced in real-world projects like a broadcasting portal and railway reservation system. 
              Certified in cybersecurity and web development by IBM, with a passion for continuous learning and collaboration.
           </p>
 
