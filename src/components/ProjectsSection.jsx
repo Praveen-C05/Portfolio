@@ -16,9 +16,9 @@ const projects = [
     title: "CmrVibeWaves Broadcasting Portal",
     description:
       "A dynamic broadcasting platform developed using HTML, CSS, JavaScript, PHP, and MySQL.",
-    image: "../../public/projects/cmrwave.png.jpeg",
+    image: "/projects/cmrwave.png",
     tags: ["PHP", "MySQL", "JavaScript", "HTML/CSS"],
-    demoUrl: "#",
+    demoUrl: "https://github.com/Praveen-C05/Dynamic-webPage",
     githubUrl: "https://github.com/Praveen-C05/Dynamic-webPage",
   },
   {
@@ -26,9 +26,9 @@ const projects = [
     title: "React Movie App",
     description:
       "A movie discovery app using TMDB API, React, Appwrite backend, and environment-secure configurations.",
-    image: "../../public/projects/react-movie.jpeg",
+    image: "/projects/react-movie.png",
     tags: ["React", "Appwrite", "TMDB", "Axios"],
-    demoUrl: "#",
+    demoUrl: "https://github.com/Praveen-C05/react",
     githubUrl: "https://github.com/Praveen-C05/react",
   },
   {
@@ -36,11 +36,23 @@ const projects = [
     title: "Railway Reservation System",
     description:
       "Relational database system for managing train reservations built using MySQL with ER design and normalization.",
-    // image: "/projects/railway-db.png",
+    image: "/public/projects/railway_er_diagram.png",
     tags: ["MySQL", "Database Design", "SQL"],
-    demoUrl: "#",
-    githubUrl: "#",
+    demoUrl: "https://github.com/Praveen-C05/railway-reservation-DBMS.git",
+    githubUrl: "https://github.com/Praveen-C05/railway-reservation-DBMS.git",
   },
+  {
+    id: 5,
+    title: "GitHub Profile & Portfolio",
+    description:
+      `Hi 👋, I'm Praveen P
+🚀 Full Stack Developer | ☁️ Cloud Enthusiast
+Currently interning at Pytheos Health Systems Pvt. Ltd. building modern UIs and learning cloud-native development.`,
+    image: "/public/projects/github.png",
+    tags: ["GitHub", "Portfolio", "React", "Tailwind CSS", "Full Stack"],
+    demoUrl: "https://github.com/Praveen-C05",
+    githubUrl: "https://github.com/Praveen-C05",
+  }
 ];
 
 export const ProjectsSection = () => {

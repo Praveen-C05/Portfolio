@@ -5,26 +5,49 @@ const skills = [
   // Frontend
   { name: "HTML/CSS", level: 95, category: "frontend" },
   { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 90, category: "frontend" },
-  { name: "TypeScript", level: 85, category: "frontend" },
+  { name: "React", level: 70, category: "frontend" },
+  // { name: "TypeScript", level: 85, category: "frontend" },
   { name: "Tailwind CSS", level: 25, category: "frontend" },
-  // { name: "Next.js", level: 80, category: "frontend" },
+  
 
   // Backend
   { name: "Node.js", level: 80, category: "backend" },
   { name: "Express", level: 75, category: "backend" },
   { name: "MongoDB", level: 70, category: "backend" },
-  { name: "PostgreSQL", level: 65, category: "backend" },
-  // { name: "GraphQL", level: 60, category: "backend" },
+  // { name: "PostgreSQL", level: 65, category: "backend" },
+  { name: "RESTful APIs", level: 85, category: "backend" },
+  
 
   // Tools
   { name: "Git/GitHub", level: 50, category: "tools" },
   { name: "PostMan", level: 60, category: "tools" },
   // { name: "Figma", level: 85, category: "tools" },
+  { name: "Bitbucket", level: 70, category: "tools" },
+  { name: "Jira", level: 80, category: "tools" },
   { name: "VS Code", level: 95, category: "tools" },
+
+  // Databases
+  { name: "MySQL", level: 70, category: "databases" },
+  { name: "DynamoDB", level: 50, category: "databases" },
+  { name: "MongoDB", level: 70, category: "databases" },
+  { name: "PostgreSQL", level: 65, category: "databases" },
+  // Other
+  { name: "Java", level: 60, category: "other" },
+  { name: "PHP", level: 55, category: "other" },
+  { name: "C++", level: 50, category: "other" },
+  { name: "Python", level: 45, category: "other" },
+  { name: "C", level: 40, category: "other" },
+  { name: "Cloud Computing", level: 65, category: "other" },
+  // { name: "Docker", level: 40, category: "other" },
+  { name: "AWS", level: 60, category: "other" }, 
+  { name: "Linux", level: 55, category: "other" },
+  { name: "CyberSecurity", level: 35, category: "other" }
+
+
+
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = ["all", "frontend", "backend", "tools", "databases", "other"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
