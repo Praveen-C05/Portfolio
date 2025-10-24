@@ -36,7 +36,7 @@ export const AboutSection = () => {
               </a>
 
               <a
-                href="/public/projects/PRAVEEN P_resume.pdf"
+                href="/public/projects/PRAVEEN P.pdf"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
               >
                 Download CV
