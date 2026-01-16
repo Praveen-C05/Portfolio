@@ -47,6 +47,16 @@
       transform: translateY(0);
     }
   }
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   @keyframes meteor {
     0% {
       transform: rotate(215deg) translateX(0);
@@ -61,6 +71,58 @@
     }
   }
 }
+
+/* Project card specific utilities */
+@layer utilities {
+  .animate-slide-up {
+    animation: slide-up 520ms cubic-bezier(.2,.9,.2,1) forwards;
+  }
+
+  .project-overlay {
+    background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.75));
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Modal styles for project details */
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2,6,23,0.6);
+  z-index: 60;
+  padding: 24px;
+}
+.project-modal {
+  width: 100%;
+  max-width: 920px;
+  background: hsl(var(--card));
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+  position: relative;
+}
+.project-modal-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  padding: 6px;
+  border-radius: 6px;
+}
+.project-modal-close:hover { background: rgba(0,0,0,0.04); }
 
 @layer base {
   :root {
@@ -140,8 +202,18 @@
 
 @utility cosmic-button {
   @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-         hover:scale-105 active:scale-95;
+         transition-all duration-300 hover:shadow-[0_0_14px_rgba(139,92,246,0.45)]
+         hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  letter-spacing: 0.2px;
+}
+
+@layer utilities {
+  .cosmic-button:focus-visible {
+    outline: 3px solid rgba(99,102,241,0.18);
+    outline-offset: 4px;
+    border-radius: 9999px;
+}
 }
 
 @utility star {

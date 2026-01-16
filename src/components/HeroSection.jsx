@@ -21,9 +21,11 @@ export const HeroSection = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            Motivated BCA Cloud Computing student with a strong foundation in programming,
-             web development and databases. Experienced in real-world projects like a broadcasting portal and railway reservation system. 
-             Certified in cybersecurity and web development by IBM, with a passion for continuous learning and collaboration.
+            I'm a BCA Cloud Computing student building reliable backend systems
+            and cloud-enabled web applications. I enjoy solving real-world
+            problems—recent work includes a live broadcasting portal and a
+            railway reservation system—and I hold certifications in
+            cybersecurity and web development.
           </p>
 
           <div className="pt-4 opacity-0 animate-fade-in-delay-4">
