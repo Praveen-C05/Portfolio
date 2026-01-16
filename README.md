@@ -13,9 +13,9 @@
 ## 🧑‍💻 About Me
 
 I’m **Praveen P**, a BCA Cloud Computing student at **CMR University**, focused on building scalable backend systems and cloud-integrated web applications.  
-I work with technologies like **JavaScript**, **Node.js**, **Express**, **React**, **MongoDB**, and **AWS** to develop secure and efficient APIs and modern, cloud-ready solutions.
+I work with technologies like **JavaScript**, **Node.js**, **Express**, **React**, **MongoDB** and **AWS** to develop secure and efficient APIs and modern, cloud-ready solutions.
 
-Currently, I’m interning as a **Backend Developer** at **Resolute AI**, contributing to health-tech platforms using **DynamoDB**, **AWS Lambda**, and **RESTful services**. I also contribute to front-end improvements and UI accessibility for internal projects.
+Currently, I’m interning as a **Backend Developer** at **Resolute AI**, contributing to health-tech platforms using **DynamoDB**, **AWS Lambda** and **RESTful services**. I also contribute to front-end improvements and UI accessibility for internal projects.
 
 I hold certifications in **Cybersecurity**, **Web Development** from **IBM** and **Cloud Computing** from  **NPTEL (IIT Kharagpur)**.
 
@@ -43,7 +43,8 @@ Git · Bitbucket · GitHub · Appwrite · VS Code
 🚉 **Railway Reservation DB** – Designed normalized schema and optimized queries in MySQL  
 <!-- 🧠 **LUNA Project** – Backend module development in JavaScript + AWS for a health-tech web app -->
 🔗 **GitHub:** [github.com/Praveen-C05](https://github.com/Praveen-C05)
-🔸 **Capstone (6th SEM):** Monarc — institutional ERP (see Projects). Uses MongoDB for storage; live demo: https://6th-monarc.vercel.app/
+
+🔸 **Capstone (6th SEM):** Monarc — institutional ERP (see Projects).  live demo: https://6th-monarc.vercel.app/
 
 ---
 
