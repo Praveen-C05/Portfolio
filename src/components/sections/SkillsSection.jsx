@@ -62,8 +62,8 @@ export const SkillsSection = () => {
   };
 
   return (
-    <section id="stack" className="relative py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 z-10 w-full">
-      <div className="w-full space-y-16">
+    <section id="stack" className="relative py-16 sm:py-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 z-10 w-full">
+      <div className="w-full space-y-10 sm:space-y-16">
         
         {/* Section Header */}
         <div className="space-y-3 text-left">
@@ -75,31 +75,45 @@ export const SkillsSection = () => {
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#F4F6F2] max-w-4xl leading-tight">
             Tools are components. Systems are the result.
           </h2>
-          <p className="text-base text-[#8D9996] max-w-2xl">
-            Organized across programming languages, backend frameworks, cloud infrastructure, databases, and core concepts. Click any component for practical production context.
+          <p className="text-sm sm:text-base text-[#8D9996] max-w-2xl">
+            Organized across programming languages, backend frameworks, cloud infrastructure, databases, and core concepts. Tap any component for practical production context.
           </p>
         </div>
 
+        {/* Mobile Active Skill Quick Preview (Instant feedback on mobile taps) */}
+        <div className="lg:hidden p-4 rounded-xl border border-[#B8FF45]/30 bg-[#1B2022]/90 backdrop-blur-md text-left flex items-start gap-3 shadow-lg">
+          <div className="p-2 rounded-lg bg-[#101315] border border-[#D9E0DF]/15 text-xl shrink-0 mt-0.5">
+            {getIcon(selectedSkill.name)}
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2">
+              <h4 className="text-sm font-bold text-[#F4F6F2] font-mono truncate">{selectedSkill.name}</h4>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#B8FF45]/15 text-[#B8FF45] border border-[#B8FF45]/30 shrink-0 font-bold">{selectedSkill.level}</span>
+            </div>
+            <p className="text-xs text-[#8D9996] mt-1 font-sans line-clamp-2">{selectedSkill.use}</p>
+          </div>
+        </div>
+
         {/* Main Stack Explorer Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left Columns: Categories and Skills Grid */}
-          <div className="lg:col-span-8 space-y-8">
+          <div className="lg:col-span-8 space-y-6 sm:space-y-8">
             {skillsCategories.map((category) => (
               <div
                 key={category.category}
-                className="p-6 rounded-2xl border border-[#D9E0DF]/10 bg-[#1B2022]/40 backdrop-blur-md space-y-4 text-left"
+                className="p-4 sm:p-6 rounded-2xl border border-[#D9E0DF]/10 bg-[#1B2022]/40 backdrop-blur-md space-y-3 sm:space-y-4 text-left"
               >
-                <div className="flex items-baseline justify-between border-b border-[#D9E0DF]/10 pb-3">
-                  <h3 className="text-base font-bold text-[#F4F6F2] font-mono tracking-wide">
+                <div className="flex items-baseline justify-between border-b border-[#D9E0DF]/10 pb-2.5 sm:pb-3">
+                  <h3 className="text-sm sm:text-base font-bold text-[#F4F6F2] font-mono tracking-wide">
                     {category.category}
                   </h3>
-                  <span className="text-[11px] font-mono text-[#8D9996] hidden sm:inline">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-[#8D9996]">
                     {category.description}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                   {category.items.map((skill) => {
                     const isSelected = selectedSkill.name === skill.name;
                     return (
@@ -109,14 +123,14 @@ export const SkillsSection = () => {
                           setSelectedSkill(skill);
                           setActiveCategory(category.category);
                         }}
-                        className={`group p-3.5 rounded-xl border text-left transition-all duration-200 flex items-center justify-between cursor-pointer ${
+                        className={`group p-2.5 sm:p-3.5 rounded-xl border text-left transition-all duration-200 flex items-center justify-between cursor-pointer min-w-0 ${
                           isSelected
                             ? "bg-[#1B2022] border-[#B8FF45] shadow-[0_0_15px_rgba(184,255,69,0.2)]"
                             : "bg-[#101315]/80 border-[#D9E0DF]/10 hover:border-[#D9E0DF]/30 hover:bg-[#1B2022]/80"
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 truncate">
-                          <span className="text-lg shrink-0">
+                        <div className="flex items-center gap-2 truncate min-w-0">
+                          <span className="text-base sm:text-lg shrink-0">
                             {getIcon(skill.name)}
                           </span>
                           <span className="text-xs font-semibold text-[#F4F6F2] truncate font-mono">
@@ -124,7 +138,7 @@ export const SkillsSection = () => {
                           </span>
                         </div>
                         <span
-                          className={`text-[9px] font-mono px-1.5 py-0.5 rounded border shrink-0 ${
+                          className={`text-[9px] font-mono px-1.5 py-0.5 rounded border shrink-0 ml-1.5 ${
                             isSelected
                               ? "bg-[#B8FF45] text-[#101315] border-[#B8FF45] font-bold"
                               : "border-[#D9E0DF]/10 text-[#8D9996]"
@@ -142,15 +156,15 @@ export const SkillsSection = () => {
 
           {/* Right Column: Compact Context Explanation Panel */}
           <div className="lg:col-span-4 sticky top-24 space-y-4">
-            <div className="p-6 rounded-2xl border border-[#B8FF45]/30 bg-[#1B2022]/90 backdrop-blur-xl shadow-2xl text-left space-y-5">
+            <div className="p-5 sm:p-6 rounded-2xl border border-[#B8FF45]/30 bg-[#1B2022]/90 backdrop-blur-xl shadow-2xl text-left space-y-4 sm:space-y-5">
               
               <div className="flex items-center justify-between border-b border-[#D9E0DF]/10 pb-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-[#101315] border border-[#D9E0DF]/15 text-2xl">
+                  <div className="p-2 rounded-xl bg-[#101315] border border-[#D9E0DF]/15 text-2xl shrink-0">
                     {getIcon(selectedSkill.name)}
                   </div>
-                  <div>
-                    <h4 className="text-base font-bold text-[#F4F6F2] font-mono">
+                  <div className="min-w-0">
+                    <h4 className="text-base font-bold text-[#F4F6F2] font-mono truncate">
                       {selectedSkill.name}
                     </h4>
                     <span className="text-[11px] font-mono text-[#B8FF45]">
@@ -158,7 +172,7 @@ export const SkillsSection = () => {
                     </span>
                   </div>
                 </div>
-                <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-[#B8FF45]/10 text-[#B8FF45] border border-[#B8FF45]/30">
+                <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-[#B8FF45]/10 text-[#B8FF45] border border-[#B8FF45]/30 shrink-0">
                   {selectedSkill.level}
                 </span>
               </div>
@@ -173,7 +187,7 @@ export const SkillsSection = () => {
               </div>
 
               <div className="pt-2 border-t border-[#D9E0DF]/10 text-[11px] font-mono text-[#8D9996] flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#B8FF45]" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#B8FF45] shrink-0" />
                 <span>Integrated in verified production deliverables</span>
               </div>
 

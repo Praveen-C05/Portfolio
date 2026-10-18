@@ -10,7 +10,23 @@ export const ContactSection = ({
   onOurWorkClick,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [isNearViewport, setIsNearViewport] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "800px" }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -94,7 +110,7 @@ export const ContactSection = ({
     <section
       id={id}
       ref={sectionRef}
-      className="relative w-full min-h-screen flex items-end bg-[#101315] overflow-hidden border-t border-white/10 cursor-default"
+      className="relative w-full min-h-screen min-h-[100dvh] flex flex-col justify-end bg-[#101315] overflow-hidden border-t border-white/10 cursor-default"
     >
       {/* 
         Spline 3D Background:
@@ -102,17 +118,19 @@ export const ContactSection = ({
         without intercepting mouse wheel events or hijacking page scroll.
       */}
       <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-        <Suspense fallback={<div className="absolute inset-0 bg-[#101315]" />}>
-          <Spline
-            scene="https://prod.spline.design/Slk6b8kz3LRlKiyk/scene.splinecode"
-            className="w-full h-full pointer-events-none"
-          />
-        </Suspense>
+        {isNearViewport && (
+          <Suspense fallback={<div className="absolute inset-0 bg-[#101315]" />}>
+            <Spline
+              scene="https://prod.spline.design/Slk6b8kz3LRlKiyk/scene.splinecode"
+              className="w-full h-full pointer-events-none"
+            />
+          </Suspense>
+        )}
       </div>
 
       {/* Dark ambient overlay with pointer-events-none */}
       <div
-        className="absolute inset-0 bg-black/45 z-[1] pointer-events-none"
+        className="absolute inset-0 bg-black/50 z-[1] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -121,37 +139,37 @@ export const ContactSection = ({
         pointer-events-none allows cursor movement across empty space to pass directly through.
         Child interactive controls have pointer-events-auto for full clickability and button hover.
       */}
-      <div className="relative z-10 pointer-events-none w-full max-w-5xl px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 pb-14 pt-32 text-left">
+      <div className="relative z-10 pointer-events-none w-full max-w-5xl px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 pb-10 sm:pb-14 pt-20 sm:pt-32 text-left">
         
         {/* Section Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B8FF45]/10 border border-[#B8FF45]/30 text-[#B8FF45] text-xs font-mono uppercase tracking-widest mb-4 pointer-events-auto shadow-sm">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>/07 — GET IN TOUCH · LET'S COLLABORATE</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B8FF45]/10 border border-[#B8FF45]/30 text-[#B8FF45] text-[11px] sm:text-xs font-mono uppercase tracking-widest mb-3 sm:mb-4 pointer-events-auto shadow-sm max-w-full">
+          <Sparkles className="w-3.5 h-3.5 shrink-0" />
+          <span className="truncate">/07 — GET IN TOUCH · LET'S COLLABORATE</span>
         </div>
 
         {/* Main Heading */}
-        <h2 className="text-[clamp(2.75rem,7.5vw,5.5rem)] font-extrabold leading-[1.05] tracking-tight text-[#F4F6F2] mb-3 md:mb-4 uppercase font-mono">
+        <h2 className="text-[clamp(2.2rem,6.8vw,5.5rem)] font-extrabold leading-[1.06] tracking-tight text-[#F4F6F2] mb-2 sm:mb-4 uppercase font-mono">
           LET'S BUILD <span className="text-[#B8FF45]">TOGETHER.</span>
         </h2>
 
         {/* Subheading */}
-        <p className="text-[#D9E0DF]/90 text-[clamp(1.125rem,2.2vw,1.75rem)] font-light mb-3 md:mb-5 font-serif italic">
+        <p className="text-[#D9E0DF]/90 text-[clamp(1rem,2vw,1.75rem)] font-light mb-2.5 sm:mb-5 font-serif italic">
           I engineer scalable applications and cloud-powered systems.
         </p>
 
         {/* Description */}
-        <p className="text-[#8D9996] text-[clamp(0.875rem,1.3vw,1.1rem)] font-light mb-6 md:mb-8 max-w-2xl leading-relaxed">
+        <p className="text-[#8D9996] text-xs sm:text-sm md:text-base font-light mb-5 sm:mb-8 max-w-2xl leading-relaxed">
           Full Stack Developer with hands-on experience in scalable web applications, RESTful APIs,
           serverless architecture, and cloud technologies. Currently open to full-time engineering roles,
           internships, and technical collaborations.
         </p>
 
         {/* Action Buttons Row */}
-        <div className="flex flex-wrap items-center gap-3.5 mb-8 pointer-events-auto">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8 pointer-events-auto">
           <button
             type="button"
             onClick={handleBookCall}
-            className="bg-[#B8FF45] text-[#101315] font-bold font-mono px-6 py-3.5 md:px-8 md:py-4 text-xs sm:text-sm tracking-wider uppercase rounded-xl cursor-pointer hover:bg-[#caff5c] hover:shadow-[0_0_30px_rgba(184,255,69,0.35)] transform hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 flex items-center gap-2"
+            className="w-full min-[460px]:w-auto justify-center bg-[#B8FF45] text-[#101315] font-bold font-mono px-5 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm tracking-wider uppercase rounded-xl cursor-pointer hover:bg-[#caff5c] hover:shadow-[0_0_30px_rgba(184,255,69,0.35)] transform hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 flex items-center gap-2 text-center"
             data-cursor="CONTACT"
           >
             <span>Book a Call</span>
@@ -161,7 +179,7 @@ export const ContactSection = ({
           <button
             type="button"
             onClick={copyEmail}
-            className="liquid-glass text-[#F4F6F2] px-5 py-3.5 text-xs sm:text-sm rounded-xl cursor-pointer hover:bg-[#1B2022] hover:border-[#B8FF45]/50 active:scale-[0.98] transition-all duration-300 flex items-center gap-2 border border-white/20 font-mono shadow-md"
+            className="w-full min-[460px]:w-auto justify-center liquid-glass text-[#F4F6F2] px-4 sm:px-5 py-3 sm:py-3.5 text-xs sm:text-sm rounded-xl cursor-pointer hover:bg-[#1B2022] hover:border-[#B8FF45]/50 active:scale-[0.98] transition-all duration-300 flex items-center gap-2 border border-white/20 font-mono shadow-md text-center"
             data-cursor="COPY EMAIL"
           >
             {copied ? (
@@ -172,7 +190,7 @@ export const ContactSection = ({
             ) : (
               <>
                 <Copy className="w-4 h-4 text-white/70" />
-                <span>mr5praveen55@gmail.com</span>
+                <span className="truncate">mr5praveen55@gmail.com</span>
               </>
             )}
           </button>
@@ -180,7 +198,7 @@ export const ContactSection = ({
           <button
             type="button"
             onClick={scrollToProjects}
-            className="bg-[#1B2022]/80 text-[#F4F6F2] px-5 py-3.5 text-xs sm:text-sm rounded-xl cursor-pointer hover:bg-[#1B2022] hover:border-[#B8FF45]/40 hover:text-[#B8FF45] active:scale-[0.98] transition-all duration-300 border border-white/20 font-mono"
+            className="w-full min-[460px]:w-auto justify-center bg-[#1B2022]/80 text-[#F4F6F2] px-4 sm:px-5 py-3 sm:py-3.5 text-xs sm:text-sm rounded-xl cursor-pointer hover:bg-[#1B2022] hover:border-[#B8FF45]/40 hover:text-[#B8FF45] active:scale-[0.98] transition-all duration-300 border border-white/20 font-mono text-center"
             data-cursor="PROJECTS"
           >
             View Projects
@@ -189,7 +207,7 @@ export const ContactSection = ({
           <button
             type="button"
             onClick={scrollToFooter}
-            className="bg-[#101315]/80 hover:bg-[#101315] hover:text-[#B8FF45] border border-white/10 px-4 py-3.5 text-xs sm:text-sm rounded-xl cursor-pointer active:scale-[0.98] transition-all duration-300 font-mono flex items-center gap-1.5 text-white/70"
+            className="w-full min-[460px]:w-auto justify-center bg-[#101315]/80 hover:bg-[#101315] hover:text-[#B8FF45] border border-white/10 px-4 py-3 sm:py-3.5 text-xs sm:text-sm rounded-xl cursor-pointer active:scale-[0.98] transition-all duration-300 font-mono flex items-center gap-1.5 text-white/70 text-center"
             data-cursor="FOOTER"
           >
             <span>Footer</span>
@@ -198,7 +216,7 @@ export const ContactSection = ({
         </div>
 
         {/* Direct Contact & Details Strip */}
-        <div className="pt-6 border-t border-white/10 flex flex-wrap items-center gap-6 text-xs text-white/70 font-mono pointer-events-auto">
+        <div className="pt-5 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-2.5 sm:gap-6 text-xs text-white/70 font-mono pointer-events-auto">
           <div className="flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5 text-[#B8FF45] shrink-0" />
             <span>Bengaluru, Karnataka, India</span>
@@ -208,7 +226,7 @@ export const ContactSection = ({
             <Mail className="w-3.5 h-3.5 text-[#B8FF45] shrink-0" />
             <a
               href="mailto:mr5praveen55@gmail.com"
-              className="hover:text-[#B8FF45] transition-colors cursor-pointer"
+              className="hover:text-[#B8FF45] transition-colors cursor-pointer truncate"
             >
               mr5praveen55@gmail.com
             </a>
@@ -224,7 +242,7 @@ export const ContactSection = ({
             </a>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <a
               href="https://github.com/Praveen-C05"
               target="_blank"

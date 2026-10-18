@@ -3,23 +3,33 @@ import { personalInfo } from "@/lib/portfolio-data";
 
 export const NexeusFooter = () => {
   const containerRef = useRef(null);
+  const footerVideoRef = useRef(null);
   const [hasEntered, setHasEntered] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    // Use IntersectionObserver to trigger the entrance animation when the footer enters viewport
+    // Use IntersectionObserver to trigger the entrance animation and manage video playback
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasEntered) {
-            setHasEntered(true);
-            runEntranceAnimation();
+          if (entry.isIntersecting) {
+            if (!hasEntered) {
+              setHasEntered(true);
+              runEntranceAnimation();
+            }
+            if (footerVideoRef.current) {
+              footerVideoRef.current.play().catch(() => {});
+            }
+          } else {
+            if (footerVideoRef.current) {
+              footerVideoRef.current.pause();
+            }
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.08, rootMargin: "300px" }
     );
 
     observer.observe(el);
@@ -195,12 +205,14 @@ export const NexeusFooter = () => {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
           min-height: 100vh;
+          min-height: 100dvh;
         }
 
         .nexeus-viewport {
           position: relative;
           width: 100%;
           min-height: 100vh;
+          min-height: 100dvh;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -229,6 +241,12 @@ export const NexeusFooter = () => {
           filter: saturate(0.88);
         }
 
+        @media (max-width: 768px) {
+          .nexeus-bg video {
+            object-position: 65% bottom;
+          }
+        }
+
         /* Aspect-ratio scrims */
         .nexeus-scrim {
           position: absolute;
@@ -247,8 +265,8 @@ export const NexeusFooter = () => {
           max-width: 1480px;
           margin-left: auto;
           margin-right: auto;
-          padding-left: clamp(24px, 4.5vw, 64px);
-          padding-right: clamp(24px, 4.5vw, 64px);
+          padding-left: clamp(16px, 4vw, 64px);
+          padding-right: clamp(16px, 4vw, 64px);
           box-sizing: border-box;
         }
 
@@ -257,8 +275,8 @@ export const NexeusFooter = () => {
           position: relative;
           z-index: 2;
           width: 100%;
-          padding-top: clamp(80px, 12vh, 140px);
-          padding-bottom: clamp(36px, 6vh, 60px);
+          padding-top: clamp(60px, 10vh, 140px);
+          padding-bottom: clamp(32px, 5vh, 60px);
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -271,41 +289,43 @@ export const NexeusFooter = () => {
 
         /* Eyebrow */
         .nexeus-eyebrow {
-          font-size: clamp(12px, 0.95vw, 15px);
+          font-size: clamp(11px, 0.95vw, 15px);
           font-weight: 600;
           letter-spacing: 0.16em;
           color: rgba(255, 255, 255, 0.92);
           text-transform: uppercase;
-          margin: 0 0 14px 0;
-          white-space: nowrap;
+          margin: 0 0 12px 0;
+          white-space: normal;
         }
 
         /* Headline Mask & Headline */
         .nexeus-headline-mask {
           overflow: hidden;
-          margin: 0 0 16px 0;
+          margin: 0 0 14px 0;
+          max-width: 100%;
         }
 
         .nexeus-headline {
           font-family: var(--font-display);
           font-weight: 400;
-          font-size: clamp(42px, 5.2vw, 78px);
-          line-height: 1.04;
+          font-size: clamp(32px, 5.2vw, 78px);
+          line-height: 1.08;
           letter-spacing: 0.01em;
           color: #fff;
           margin: 0;
-          white-space: nowrap;
+          white-space: normal;
+          word-break: break-word;
         }
 
         /* Lede Description */
         .nexeus-lede {
           max-width: 480px;
-          font-size: clamp(14px, 1.1vw, 17px);
+          font-size: clamp(13.5px, 1.1vw, 17px);
           font-weight: var(--fw-medium);
-          line-height: 1.48;
+          line-height: 1.5;
           letter-spacing: -0.01em;
           color: rgba(255, 255, 255, 0.88);
-          margin: 0 0 28px 0;
+          margin: 0 0 24px 0;
         }
 
         /* Take Control CTA Button */
@@ -313,9 +333,9 @@ export const NexeusFooter = () => {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          height: clamp(40px, 4.5vh, 46px);
-          padding: 0 clamp(24px, 2vw, 32px);
-          border-radius: 5px;
+          min-height: 44px;
+          padding: 0 clamp(20px, 2vw, 32px);
+          border-radius: 6px;
           background: #fff;
           color: var(--text-invert);
           text-decoration: none;
@@ -330,9 +350,13 @@ export const NexeusFooter = () => {
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
         }
 
+        .nexeus-cta:active {
+          transform: scale(0.98);
+        }
+
         .nexeus-cta span {
-          font-size: clamp(14px, 0.98vw, 15.8px);
-          font-weight: 500;
+          font-size: clamp(13.5px, 0.98vw, 15.8px);
+          font-weight: 600;
           line-height: 1;
           color: #000;
           white-space: nowrap;
@@ -357,8 +381,8 @@ export const NexeusFooter = () => {
         }
 
         .nexeus-finner {
-          padding-top: clamp(32px, 4vh, 44px);
-          padding-bottom: clamp(24px, 3vh, 34px);
+          padding-top: clamp(24px, 3.5vh, 44px);
+          padding-bottom: clamp(20px, 3vh, 34px);
           display: flex;
           flex-direction: column;
         }
@@ -368,7 +392,7 @@ export const NexeusFooter = () => {
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          gap: clamp(32px, 4vw, 72px);
+          gap: clamp(28px, 4vw, 72px);
           width: 100%;
         }
 
@@ -394,7 +418,7 @@ export const NexeusFooter = () => {
         }
 
         .nexeus-wordmark {
-          font-size: clamp(21px, 1.6vw, 24px);
+          font-size: clamp(20px, 1.6vw, 24px);
           font-weight: 500;
           letter-spacing: 0.02em;
           color: #fff;
@@ -413,7 +437,7 @@ export const NexeusFooter = () => {
         /* Navigation Columns */
         .nexeus-nav {
           display: flex;
-          gap: clamp(36px, 5.5vw, 90px);
+          gap: clamp(24px, 5vw, 90px);
           align-items: flex-start;
           flex-wrap: wrap;
         }
@@ -421,16 +445,16 @@ export const NexeusFooter = () => {
         .nexeus-col {
           display: flex;
           flex-direction: column;
-          min-width: 120px;
+          min-width: 100px;
         }
 
         .nexeus-col h3 {
-          font-size: clamp(12.5px, 0.95vw, 14.5px);
+          font-size: clamp(12px, 0.95vw, 14.5px);
           font-weight: 600;
           letter-spacing: 0.12em;
           color: var(--text-heading);
-          white-space: nowrap;
-          margin: 0 0 14px 0;
+          white-space: normal;
+          margin: 0 0 12px 0;
           text-transform: uppercase;
         }
 
@@ -440,11 +464,12 @@ export const NexeusFooter = () => {
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 9px;
+          gap: 8px;
         }
 
         .nexeus-col li {
-          white-space: nowrap;
+          white-space: normal;
+          word-break: break-word;
         }
 
         .nexeus-col a {
@@ -453,6 +478,8 @@ export const NexeusFooter = () => {
           letter-spacing: -0.01em;
           color: rgba(255, 255, 255, 0.85);
           text-decoration: none;
+          display: inline-block;
+          padding: 2px 0;
           transition: color 0.2s ease, opacity 0.2s ease;
         }
 
@@ -466,7 +493,7 @@ export const NexeusFooter = () => {
           width: 100%;
           height: 1px;
           background: rgba(255, 255, 255, 0.24);
-          margin: clamp(26px, 3.2vh, 34px) 0 clamp(20px, 2.5vh, 26px);
+          margin: clamp(22px, 3vh, 34px) 0 clamp(18px, 2.5vh, 26px);
           transform-origin: left center;
         }
 
@@ -475,7 +502,7 @@ export const NexeusFooter = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          gap: 20px;
+          gap: 16px;
           width: 100%;
         }
 
@@ -484,36 +511,46 @@ export const NexeusFooter = () => {
           font-weight: var(--fw-medium);
           letter-spacing: -0.01em;
           color: var(--text-muted);
-          white-space: nowrap;
+          white-space: normal;
           margin: 0;
         }
 
         .nexeus-socials {
           display: flex;
-          gap: clamp(18px, 2.5vw, 28px);
+          gap: clamp(12px, 2vw, 24px);
           align-items: center;
         }
 
         .nexeus-socials a {
-          width: clamp(22px, 1.8vw, 26px);
-          height: clamp(22px, 1.8vw, 26px);
+          min-width: 40px;
+          min-height: 40px;
+          padding: 8px;
           color: rgba(255, 255, 255, 0.88);
-          display: flex;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-          transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, background 0.2s ease;
           text-decoration: none;
+          touch-action: manipulation;
         }
 
         .nexeus-socials a:hover {
           color: #fff;
+          background: rgba(255, 255, 255, 0.15);
           transform: translateY(-2px);
           opacity: 1;
         }
 
+        .nexeus-socials a:active {
+          transform: scale(0.95);
+        }
+
         .nexeus-socials svg {
-          width: 100%;
-          height: 100%;
+          width: 18px;
+          height: 18px;
         }
 
         /* Initial pre-entrance state */
@@ -541,7 +578,7 @@ export const NexeusFooter = () => {
         @media (max-width: 990px) {
           .nexeus-top-section {
             flex-direction: column;
-            gap: 32px;
+            gap: 28px;
           }
 
           .nexeus-brand-block {
@@ -558,14 +595,13 @@ export const NexeusFooter = () => {
 
         @media (max-width: 680px) {
           .nexeus-headline {
-            white-space: normal;
-            font-size: clamp(34px, 9.5vw, 54px);
-            max-width: 14ch;
+            font-size: clamp(30px, 8.5vw, 48px);
+            max-width: 16ch;
           }
 
           .nexeus-nav {
             grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
+            gap: 20px;
           }
 
           .nexeus-col.c3 {
@@ -580,12 +616,22 @@ export const NexeusFooter = () => {
         }
 
         @media (max-width: 480px) {
-          .nexeus-col li {
-            white-space: normal;
+          .nexeus-nav {
+            grid-template-columns: 1fr;
+            gap: 22px;
           }
 
-          .nexeus-legal {
-            white-space: normal;
+          .nexeus-col.c3 {
+            grid-column: auto;
+          }
+
+          .nexeus-cta {
+            width: 100%;
+          }
+
+          .nexeus-socials {
+            width: 100%;
+            justify-content: flex-start;
           }
         }
       `}</style>
@@ -594,10 +640,11 @@ export const NexeusFooter = () => {
         {/* Background Alpine Video */}
         <div className="nexeus-bg">
           <video
-            autoPlay
+            ref={footerVideoRef}
             muted
             loop
             playsInline
+            preload="none"
             poster="/nexeus-footer-poster.webp"
             aria-label="Painted alpine panorama: a lone hiker with a pink backpack faces a snow-capped peak above a sea of clouds"
           >

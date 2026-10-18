@@ -27,6 +27,7 @@ export const SceneCanvas = () => {
     if (!container) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let isMobile = window.innerWidth < 768;
 
     // ------------------------------------------------------------------------
     // Scene, Fog, and Camera
@@ -40,7 +41,7 @@ export const SceneCanvas = () => {
       0.1,
       100
     );
-    camera.position.set(1.4, 0.2, 6.8);
+    camera.position.set(isMobile ? 0.4 : 1.4, 0.2, isMobile ? 8.4 : 6.8);
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({
@@ -48,7 +49,7 @@ export const SceneCanvas = () => {
       antialias: true,
       alpha: true,
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.35;
@@ -180,7 +181,7 @@ export const SceneCanvas = () => {
     rootGroup.add(connectionLines);
 
     // 6. Atmospheric Micro-Particle Field
-    const isMobile = window.innerWidth < 768;
+    isMobile = window.innerWidth < 768;
     const particleCount = isMobile ? 300 : 750;
     const particleGeo = new THREE.BufferGeometry();
     const particlePos = new Float32Array(particleCount * 3);
@@ -220,6 +221,14 @@ export const SceneCanvas = () => {
       window.addEventListener("mousemove", onMouseMove);
     }
 
+    // Precompile all WebGL shaders during initial load to eliminate frame drops
+    try {
+      renderer.compile(scene, camera);
+      window.dispatchEvent(new CustomEvent("threejs-scene-ready"));
+    } catch (e) {
+      window.dispatchEvent(new CustomEvent("threejs-scene-ready"));
+    }
+
     // ------------------------------------------------------------------------
     // THE SIGNATURE CHOREOGRAPHY — 5-Act Transforming Machine
     // ------------------------------------------------------------------------
@@ -234,6 +243,11 @@ export const SceneCanvas = () => {
 
         if (prefersReducedMotion) return;
 
+        const isMob = window.innerWidth < 768;
+        const scaleFactor = isMob ? 0.65 : 1.0;
+        const xFactor = isMob ? 0.35 : 1.0;
+        const yOffset = isMob ? 0.6 : 0;
+
         // Smooth continuous accumulation of 360-degree rotation across the journey
         const rotY = scrollProgress * Math.PI * 2.1;
         const rotX = Math.sin(scrollProgress * Math.PI) * 0.4;
@@ -246,11 +260,11 @@ export const SceneCanvas = () => {
         // --------------------------------------------------------------------
         if (scrollProgress < 0.18) {
           const t = scrollProgress / 0.18;
-          camera.position.x = THREE.MathUtils.lerp(1.4, 2.2, t);
+          camera.position.x = THREE.MathUtils.lerp(isMob ? 0.4 : 1.4, isMob ? 0.6 : 2.2, t);
           camera.position.y = THREE.MathUtils.lerp(0.2, 0.4, t);
-          camera.position.z = THREE.MathUtils.lerp(6.8, 7.8, t);
-          rootGroup.position.set(THREE.MathUtils.lerp(1.5, 2.0, t), 0, 0);
-          rootGroup.scale.setScalar(THREE.MathUtils.lerp(1.1, 1.0, t));
+          camera.position.z = THREE.MathUtils.lerp(isMob ? 8.4 : 6.8, isMob ? 9.0 : 7.8, t);
+          rootGroup.position.set(THREE.MathUtils.lerp(1.5, 2.0, t) * xFactor, yOffset, 0);
+          rootGroup.scale.setScalar(THREE.MathUtils.lerp(1.1, 1.0, t) * scaleFactor);
 
           // Tiers stay unified inside the core
           layerMeshes.forEach((mesh) => (mesh.position.y = 0));
@@ -263,10 +277,11 @@ export const SceneCanvas = () => {
         // --------------------------------------------------------------------
         else if (scrollProgress < 0.45) {
           const t = (scrollProgress - 0.18) / 0.27;
-          camera.position.x = THREE.MathUtils.lerp(2.2, 2.8, t);
+          camera.position.x = THREE.MathUtils.lerp(isMob ? 0.6 : 2.2, isMob ? 0.8 : 2.8, t);
           camera.position.y = THREE.MathUtils.lerp(0.4, -0.2, t);
-          camera.position.z = THREE.MathUtils.lerp(7.8, 8.4, t);
-          rootGroup.position.set(THREE.MathUtils.lerp(2.0, 2.6, t), 0, 0);
+          camera.position.z = THREE.MathUtils.lerp(isMob ? 9.0 : 7.8, isMob ? 9.6 : 8.4, t);
+          rootGroup.position.set(THREE.MathUtils.lerp(2.0, 2.6, t) * xFactor, yOffset * 0.5, 0);
+          rootGroup.scale.setScalar(THREE.MathUtils.lerp(1.0, 0.9, t) * scaleFactor);
 
           // Physical vertical separation of architecture tiers
           const separation = THREE.MathUtils.lerp(0, 1.25, t);
@@ -285,11 +300,11 @@ export const SceneCanvas = () => {
         // --------------------------------------------------------------------
         else if (scrollProgress < 0.7) {
           const t = (scrollProgress - 0.45) / 0.25;
-          camera.position.x = THREE.MathUtils.lerp(2.8, -2.5, t);
+          camera.position.x = THREE.MathUtils.lerp(isMob ? 0.8 : 2.8, isMob ? -0.8 : -2.5, t);
           camera.position.y = THREE.MathUtils.lerp(-0.2, 0.6, t);
-          camera.position.z = THREE.MathUtils.lerp(8.4, 9.2, t);
-          rootGroup.position.set(THREE.MathUtils.lerp(2.6, -2.4, t), 0, 0);
-          rootGroup.scale.setScalar(THREE.MathUtils.lerp(1.0, 0.85, t));
+          camera.position.z = THREE.MathUtils.lerp(isMob ? 9.6 : 8.4, isMob ? 10.2 : 9.2, t);
+          rootGroup.position.set(THREE.MathUtils.lerp(2.6, -2.4, t) * xFactor, 0, 0);
+          rootGroup.scale.setScalar(THREE.MathUtils.lerp(1.0, 0.85, t) * scaleFactor);
 
           // Multi-tenant cluster formation: satellites expand outwards
           satellites.forEach((sat, i) => {
@@ -302,11 +317,11 @@ export const SceneCanvas = () => {
         // --------------------------------------------------------------------
         else if (scrollProgress < 0.88) {
           const t = (scrollProgress - 0.7) / 0.18;
-          camera.position.x = THREE.MathUtils.lerp(-2.5, 1.8, t);
+          camera.position.x = THREE.MathUtils.lerp(isMob ? -0.8 : -2.5, isMob ? 0.5 : 1.8, t);
           camera.position.y = THREE.MathUtils.lerp(0.6, -0.6, t);
-          camera.position.z = THREE.MathUtils.lerp(9.2, 8.5, t);
-          rootGroup.position.set(THREE.MathUtils.lerp(-2.4, 1.8, t), 0, 0);
-          rootGroup.scale.setScalar(THREE.MathUtils.lerp(0.85, 0.95, t));
+          camera.position.z = THREE.MathUtils.lerp(isMob ? 10.2 : 9.2, isMob ? 9.6 : 8.5, t);
+          rootGroup.position.set(THREE.MathUtils.lerp(-2.4, 1.8, t) * xFactor, 0, 0);
+          rootGroup.scale.setScalar(THREE.MathUtils.lerp(0.85, 0.95, t) * scaleFactor);
 
           // Align nodes into a service pipeline
           const collapse = 1 - t;
@@ -321,11 +336,11 @@ export const SceneCanvas = () => {
         // --------------------------------------------------------------------
         else {
           const t = (scrollProgress - 0.88) / 0.12;
-          camera.position.x = THREE.MathUtils.lerp(1.8, 0, t);
+          camera.position.x = THREE.MathUtils.lerp(isMob ? 0.5 : 1.8, 0, t);
           camera.position.y = THREE.MathUtils.lerp(-0.6, 0, t);
-          camera.position.z = THREE.MathUtils.lerp(8.5, 7.2, t);
-          rootGroup.position.set(THREE.MathUtils.lerp(1.8, 0, t), 0, 0);
-          rootGroup.scale.setScalar(THREE.MathUtils.lerp(0.95, 1.08, t));
+          camera.position.z = THREE.MathUtils.lerp(isMob ? 9.6 : 8.5, isMob ? 8.2 : 7.2, t);
+          rootGroup.position.set(THREE.MathUtils.lerp(1.8, 0, t) * xFactor, 0, 0);
+          rootGroup.scale.setScalar(THREE.MathUtils.lerp(0.95, 1.08, t) * scaleFactor);
 
           // Full re-integration into unified ring
           layerMeshes.forEach((mesh) => (mesh.position.y = 0));
@@ -387,9 +402,11 @@ export const SceneCanvas = () => {
         // Particle field subtle drift
         particles.rotation.y = elapsedTime * 0.025;
 
-        // Pointer Parallax Camera reaction
-        camera.position.x += (mouse.x * 0.5 - (camera.position.x - (rootGroup.position.x + 0.15))) * 0.02;
-        camera.position.y += (-mouse.y * 0.35 - (camera.position.y - 0.15)) * 0.02;
+        // Pointer Parallax Camera reaction (Desktop only)
+        if (!isMobile) {
+          camera.position.x += (mouse.x * 0.5 - (camera.position.x - (rootGroup.position.x + 0.15))) * 0.02;
+          camera.position.y += (-mouse.y * 0.35 - (camera.position.y - 0.15)) * 0.02;
+        }
       }
 
       renderer.render(scene, camera);
@@ -403,10 +420,11 @@ export const SceneCanvas = () => {
     const onResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
+      isMobile = width < 768;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.5));
       ScrollTrigger.refresh();
     };
 

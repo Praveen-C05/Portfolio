@@ -46,6 +46,17 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
   return (
     <>
       {/* Scroll Progress Bar (shown when scrolled) */}
@@ -136,20 +147,28 @@ export const Navbar = () => {
 
       {/* Mobile Drawer Navigation */}
       <div
-        className={`fixed inset-0 z-30 bg-[#101315]/96 backdrop-blur-2xl transition-all duration-300 lg:hidden flex flex-col justify-between px-6 pt-28 pb-12 ${isMobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-50 bg-[#101315]/98 backdrop-blur-2xl transition-all duration-300 lg:hidden flex flex-col justify-between px-6 pt-20 pb-8 overflow-y-auto ${isMobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
       >
         <div className="space-y-6">
-          <p className="text-[11px] font-mono tracking-widest text-[#8D9996] uppercase">
-            // Navigation Architecture
-          </p>
-          <div className="flex flex-col space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#D9E0DF]/10">
+            <p className="text-[11px] font-mono tracking-widest text-[#8D9996] uppercase">
+              // Navigation Architecture
+            </p>
+            <button
+              onClick={() => setIsMobileOpen(false)}
+              className="text-xs font-mono px-3 py-1 rounded-full border border-[#D9E0DF]/20 text-[#F4F6F2] hover:border-[#B8FF45] hover:text-[#B8FF45] transition-colors"
+            >
+              CLOSE ✕
+            </button>
+          </div>
+          <div className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileOpen(false)}
-                className="flex items-center justify-between text-2xl font-bold tracking-tight text-[#F4F6F2] hover:text-[#B8FF45] transition-colors py-2 border-b border-[#D9E0DF]/10"
+                className="flex items-center justify-between text-xl sm:text-2xl font-bold tracking-tight text-[#F4F6F2] hover:text-[#B8FF45] transition-colors py-2.5 border-b border-[#D9E0DF]/10"
               >
                 <span>{link.name}</span>
                 <span className="text-xs font-mono text-[#8D9996]">{link.tag}</span>
@@ -158,13 +177,13 @@ export const Navbar = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-[#D9E0DF]/10 space-y-4">
+        <div className="pt-6 border-t border-[#D9E0DF]/10 space-y-3.5">
           <a
             href={personalInfo.resumePdf}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMobileOpen(false)}
-            className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase bg-[#B8FF45] text-[#101315] shadow-[0_0_20px_rgba(184,255,69,0.3)]"
+            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-xs tracking-wider uppercase bg-[#B8FF45] text-[#101315] shadow-[0_0_20px_rgba(184,255,69,0.3)]"
           >
             <FileDown className="w-4 h-4" />
             <span>DOWNLOAD RÉSUMÉ</span>

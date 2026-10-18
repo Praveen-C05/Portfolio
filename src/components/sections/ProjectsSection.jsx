@@ -19,6 +19,17 @@ import { featuredProjects } from "@/lib/portfolio-data";
 export const ProjectsSection = () => {
   const [activeModalProject, setActiveModalProject] = useState(null);
 
+  React.useEffect(() => {
+    if (activeModalProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeModalProject]);
+
   const renderProjectVisual = (project) => {
     switch (project.id) {
       case "monarc-erp":
@@ -161,8 +172,8 @@ export const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="relative py-28 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 z-10 w-full">
-      <div className="w-full space-y-16">
+    <section id="projects" className="relative py-16 sm:py-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 z-10 w-full">
+      <div className="w-full space-y-10 sm:space-y-16">
         
         {/* Section Header */}
         <div className="space-y-3 text-left">
@@ -174,13 +185,13 @@ export const ProjectsSection = () => {
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#F4F6F2] max-w-4xl leading-tight">
             Featured <span className="text-[#B8FF45]">Projects</span>
           </h2>
-          <p className="text-base text-[#8D9996] max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-[#8D9996] max-w-3xl leading-relaxed">
             Selected projects showcasing real-world problem solving, full-stack integrations, and cloud-enabled deployments.
           </p>
         </div>
 
         {/* Featured Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left">
           {featuredProjects.map((project) => {
             const isCapstone = project.id === "monarc-erp";
 
@@ -194,7 +205,7 @@ export const ProjectsSection = () => {
                 }`}
               >
                 {/* Card Top Preview / Project Image */}
-                <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-[#0c0e10] border-b border-[#D9E0DF]/10">
+                <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-[#0c0e10] border-b border-[#D9E0DF]/10">
                   {project.image ? (
                     <img
                       src={project.image}
@@ -233,7 +244,7 @@ export const ProjectsSection = () => {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
                     <span className="text-[10px] font-mono tracking-widest uppercase text-[#8D9996]">
                       {project.category}
@@ -247,7 +258,7 @@ export const ProjectsSection = () => {
                   </div>
 
                   {/* Tags */}
-                  <div className="space-y-4 pt-2">
+                  <div className="space-y-3 sm:space-y-4 pt-2">
                     <div className="flex flex-wrap gap-1.5">
                       {project.tags.slice(0, 4).map((tag) => (
                         <span
@@ -310,16 +321,16 @@ export const ProjectsSection = () => {
         </div>
 
         {/* Check My GitHub Banner / CTA */}
-        <div className="w-full rounded-2xl border border-[#B8FF45]/30 bg-gradient-to-r from-[#1B2022] via-[#101315] to-[#1B2022] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_0_30px_rgba(184,255,69,0.08)]">
-          <div className="flex items-center gap-4 text-left">
-            <div className="p-3.5 rounded-xl bg-[#B8FF45]/10 border border-[#B8FF45]/30 text-[#B8FF45] shrink-0">
-              <Github className="w-7 h-7" />
+        <div className="w-full rounded-2xl border border-[#B8FF45]/30 bg-gradient-to-r from-[#1B2022] via-[#101315] to-[#1B2022] p-5 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 shadow-[0_0_30px_rgba(184,255,69,0.08)]">
+          <div className="flex items-center gap-3.5 sm:gap-4 text-left">
+            <div className="p-3 rounded-xl bg-[#B8FF45]/10 border border-[#B8FF45]/30 text-[#B8FF45] shrink-0">
+              <Github className="w-6 h-6 sm:w-7 sm:h-7" />
             </div>
             <div>
-              <h3 className="text-xl font-bold font-mono text-[#F4F6F2]">
+              <h3 className="text-lg sm:text-xl font-bold font-mono text-[#F4F6F2]">
                 Explore More Repositories
               </h3>
-              <p className="text-sm text-[#8D9996] mt-0.5">
+              <p className="text-xs sm:text-sm text-[#8D9996] mt-0.5">
                 Visit Praveen P's GitHub for source repositories, backend architectures, and open-source contributions.
               </p>
             </div>
@@ -328,7 +339,7 @@ export const ProjectsSection = () => {
             href="https://github.com/Praveen-C05"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-sm font-bold bg-[#B8FF45] text-[#101315] hover:bg-[#caff5c] transition-all transform hover:-translate-y-0.5 shadow-lg shadow-[#B8FF45]/20 shrink-0 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-mono text-xs sm:text-sm font-bold bg-[#B8FF45] text-[#101315] hover:bg-[#caff5c] transition-all transform hover:-translate-y-0.5 shadow-lg shadow-[#B8FF45]/20 shrink-0 cursor-pointer"
           >
             <span>Check My Github</span>
             <ExternalLink className="w-4 h-4" />
@@ -337,20 +348,20 @@ export const ProjectsSection = () => {
 
         {/* Detailed Case Study Modal Drawer */}
         {activeModalProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-xl animate-fade-in">
-            <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-[#D9E0DF]/20 bg-[#1B2022] p-6 sm:p-8 text-left space-y-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-xl animate-fade-in">
+            <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl border border-[#D9E0DF]/20 bg-[#1B2022] p-5 sm:p-8 text-left space-y-5 sm:space-y-6 shadow-2xl">
               
               {/* Close Button */}
               <button
                 onClick={() => setActiveModalProject(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-[#101315] text-[#8D9996] hover:text-[#F4F6F2] border border-[#D9E0DF]/15 transition-colors cursor-pointer"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-[#101315] text-[#8D9996] hover:text-[#F4F6F2] border border-[#D9E0DF]/15 transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Modal Header */}
-              <div className="space-y-2 pr-10">
+              <div className="space-y-1.5 sm:space-y-2 pr-10">
                 <div className="flex items-center gap-2">
                   <span className="text-[11px] font-mono text-[#B8FF45] uppercase tracking-wider">
                     {activeModalProject.category}
@@ -360,17 +371,17 @@ export const ProjectsSection = () => {
                     {activeModalProject.badge}
                   </span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F4F6F2] font-mono">
+                <h3 className="text-xl sm:text-3xl font-extrabold text-[#F4F6F2] font-mono leading-tight">
                   {activeModalProject.title}
                 </h3>
-                <p className="text-sm font-mono text-[#B8FF45]">
+                <p className="text-xs sm:text-sm font-mono text-[#B8FF45]">
                   {activeModalProject.headline}
                 </p>
               </div>
 
               {/* Modal Project Preview Image */}
               {activeModalProject.image && (
-                <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden border border-[#D9E0DF]/15 bg-[#101315] shadow-2xl">
+                <div className="relative w-full h-44 sm:h-72 rounded-xl sm:rounded-2xl overflow-hidden border border-[#D9E0DF]/15 bg-[#101315] shadow-2xl">
                   <img
                     src={activeModalProject.image}
                     alt={activeModalProject.title}
@@ -386,7 +397,7 @@ export const ProjectsSection = () => {
                   <h4 className="text-xs font-mono tracking-wider text-[#8D9996] uppercase">
                     // PRAVEEN'S CONTRIBUTION &amp; IMPLEMENTATION
                   </h4>
-                  <p className="text-sm text-[#F4F6F2]/90 leading-relaxed whitespace-pre-line">
+                  <p className="text-xs sm:text-sm text-[#F4F6F2]/90 leading-relaxed whitespace-pre-line">
                     {activeModalProject.contribution}
                   </p>
                 </div>
@@ -395,7 +406,7 @@ export const ProjectsSection = () => {
                   <h4 className="text-xs font-mono tracking-wider text-[#8D9996] uppercase">
                     // ARCHITECTURAL DESIGN &amp; CLOUD DEPLOYMENT
                   </h4>
-                  <p className="text-sm text-[#8D9996] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#8D9996] leading-relaxed">
                     {activeModalProject.technicalApproach}
                   </p>
                 </div>
@@ -406,11 +417,11 @@ export const ProjectsSection = () => {
                 <h4 className="text-xs font-mono tracking-wider text-[#8D9996] uppercase">
                   // VERIFIED METRICS &amp; DELIVERABLES
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                   {activeModalProject.metrics.map((metric, i) => (
                     <div
                       key={i}
-                      className="p-3 rounded-xl bg-[#101315] border border-[#D9E0DF]/10 flex items-center gap-2 text-xs font-mono text-[#D9E0DF]"
+                      className="p-2.5 sm:p-3 rounded-xl bg-[#101315] border border-[#D9E0DF]/10 flex items-center gap-2 text-xs font-mono text-[#D9E0DF]"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#B8FF45] shrink-0" />
                       <span>{metric}</span>
@@ -424,11 +435,11 @@ export const ProjectsSection = () => {
                 <h4 className="text-xs font-mono tracking-wider text-[#8D9996] uppercase">
                   // STACK COMPONENTS
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {activeModalProject.tags.map((t) => (
                     <span
                       key={t}
-                      className="text-xs font-mono px-3 py-1 rounded-lg bg-[#101315] text-[#F4F6F2] border border-[#D9E0DF]/15"
+                      className="text-[11px] sm:text-xs font-mono px-2.5 sm:px-3 py-1 rounded-lg bg-[#101315] text-[#F4F6F2] border border-[#D9E0DF]/15"
                     >
                       {t}
                     </span>
@@ -437,14 +448,14 @@ export const ProjectsSection = () => {
               </div>
 
               {/* Modal Actions */}
-              <div className="pt-4 border-t border-[#D9E0DF]/10 flex flex-wrap items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
+              <div className="pt-4 border-t border-[#D9E0DF]/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                   {activeModalProject.demoUrl && (
                     <a
                       href={activeModalProject.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase bg-[#B8FF45] text-[#101315] hover:bg-[#caff5c] transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase bg-[#B8FF45] text-[#101315] hover:bg-[#caff5c] transition-colors"
                     >
                       <span>LAUNCH LIVE APPLICATION</span>
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -455,7 +466,7 @@ export const ProjectsSection = () => {
                       href={activeModalProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-mono text-xs tracking-wider uppercase border border-[#D9E0DF]/25 text-[#F4F6F2] hover:border-[#B8FF45] transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl font-mono text-xs tracking-wider uppercase border border-[#D9E0DF]/25 text-[#F4F6F2] hover:border-[#B8FF45] transition-colors"
                     >
                       <Github className="w-4 h-4" />
                       <span>REPOSITORY / CODE</span>
@@ -465,7 +476,7 @@ export const ProjectsSection = () => {
 
                 <button
                   onClick={() => setActiveModalProject(null)}
-                  className="text-xs font-mono text-[#8D9996] hover:text-[#F4F6F2] cursor-pointer"
+                  className="text-xs font-mono text-[#8D9996] hover:text-[#F4F6F2] cursor-pointer text-center py-1 sm:py-0"
                 >
                   [ CLOSE ESC ]
                 </button>
