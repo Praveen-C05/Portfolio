@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, FileDown } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -7,6 +7,7 @@ const navItems = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Experience", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -16,74 +17,99 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
+      setIsScrolled(window.scrollY > 15);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "py-3 bg-[#101315]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-lg shadow-black/40"
+          : "py-5 bg-transparent"
       )}
     >
-      <div className="container flex items-center justify-between">
-        <a
-          className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
-        >
-          <span className="relative z-10">
-            <span className="text-glow text-foreground"> PRAVEEN_P </span>{" "}
-            Portfolio
+      <div className="container max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
+        
+        {/* Brand: Glowing "PRAVEEN P" alongside "Cloud & Full Stack Engineer" */}
+        <a href="#hero" className="flex items-center gap-2.5 group">
+          <span className="font-extrabold tracking-wider text-base sm:text-lg text-white drop-shadow-[0_0_12px_rgba(184,255,69,0.5)] group-hover:text-[#B8FF45] transition-colors">
+            PRAVEEN P
+          </span>
+          <span className="hidden sm:inline text-white/30 text-xs font-mono">|</span>
+          <span className="hidden sm:inline text-xs font-medium text-[#F4F6F2]/65 tracking-wide">
+            Cloud & Full Stack Engineer
           </span>
         </a>
 
-        {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center space-x-7 text-sm font-medium">
           {navItems.map((item, key) => (
             <a
               key={key}
               href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              className="text-[#F4F6F2]/75 hover:text-[#B8FF45] transition-colors duration-200"
             >
               {item.name}
             </a>
           ))}
         </div>
 
-        {/* mobile nav */}
+        {/* Action: Get Resume Button */}
+        <div className="hidden md:flex items-center">
+          <a
+            href="/PraveenP_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold tracking-wider uppercase silver-button"
+          >
+            <FileDown className="w-3.5 h-3.5 text-[#B8FF45]" />
+            <span>Get Resume</span>
+          </a>
+        </div>
 
+        {/* Mobile menu button */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
+          className="md:hidden p-2 text-white z-50 rounded-lg bg-white/5 border border-white/10"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
+        {/* Mobile dropdown nav */}
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
+            "fixed inset-0 bg-[#101315]/98 backdrop-blur-2xl z-40 flex flex-col items-center justify-center space-y-6 text-lg transition-all duration-300 md:hidden",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col space-y-8 text-xl">
-            {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
+          {navItems.map((item, key) => (
+            <a
+              key={key}
+              href={item.href}
+              className="text-[#F4F6F2]/80 hover:text-[#B8FF45] transition-colors font-medium text-xl"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </a>
+          ))}
+          <a
+            href="/PraveenP_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wider uppercase spectral-button"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <FileDown className="w-4 h-4" />
+            <span>Get Resume</span>
+          </a>
         </div>
       </div>
     </nav>
