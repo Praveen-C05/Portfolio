@@ -428,3 +428,391 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ==========================================================================
+   Framer Dynamic Island Navbar (Supaste Design Language)
+   ========================================================================== */
+
+.framer-navbar-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.framer-mxzXr {
+  background-color: rgb(0, 0, 0);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  opacity: 1;
+  display: flex;
+  flex-flow: row;
+  place-content: center;
+  align-items: center;
+  gap: 30px;
+  width: min-content;
+  height: min-content;
+  padding: 8px 14px;
+  position: relative;
+  overflow: visible;
+  pointer-events: auto;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.framer-mxzXr .framer-18gbe84 {
+  flex-flow: row;
+  flex: none;
+  place-content: center;
+  align-items: center;
+  gap: 32px;
+  width: min-content;
+  max-width: 1200px;
+  height: min-content;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
+
+.framer-mxzXr .framer-1qxc2wt {
+  flex-flow: row;
+  flex: none;
+  place-content: center flex-start;
+  align-items: center;
+  gap: 10px;
+  width: min-content;
+  height: min-content;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
+
+.framer-mxzXr .framer-1hmaiy {
+  height: min-content;
+  flex-flow: row;
+  flex: none;
+  place-content: center;
+  align-items: center;
+  gap: 10px;
+  width: min-content;
+  padding: 0;
+  text-decoration: none;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.framer-mxzXr .framer-197y5gw {
+  aspect-ratio: 1;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  overflow: visible;
+  border-radius: 8px;
+}
+
+.framer-mxzXr .framer-1tgpjgm {
+  white-space: pre;
+  flex: none;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.framer-mxzXr .framer-text {
+  font-family: "Inter Display", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.framer-mxzXr .framer-m1k0id {
+  flex-flow: row;
+  flex: none;
+  place-content: center flex-end;
+  align-items: center;
+  gap: 22px;
+  width: min-content;
+  height: min-content;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
+
+.framer-mxzXr .framer-cvt8ml {
+  white-space: pre;
+  flex: none;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.framer-mxzXr .framer-1zb5hk-container {
+  flex: none;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.framer-mxzXr .framer-2DWFg {
+  cursor: pointer;
+  height: min-content;
+  flex-flow: row;
+  place-content: center;
+  align-items: center;
+  gap: 6px;
+  width: min-content;
+  padding: 7px 15px;
+  text-decoration: none;
+  display: flex;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  color: rgb(0, 0, 0);
+  transition: opacity 0.2s ease, transform 0.15s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.framer-mxzXr .framer-2DWFg:hover {
+  background-color: #ededed;
+  transform: translateY(-1px);
+}
+
+.framer-mxzXr .framer-2DWFg:active {
+  transform: scale(0.98);
+}
+
+.framer-mxzXr .framer-o08yso {
+  z-index: 2;
+  flex-flow: row;
+  flex: none;
+  place-content: center;
+  align-items: center;
+  gap: 6px;
+  width: min-content;
+  height: min-content;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
+
+.framer-mxzXr .framer-1pjc4qm {
+  width: 12px;
+  height: 15px;
+  position: relative;
+}
+
+.framer-mxzXr .framer-1sli5vh {
+  white-space: pre;
+  z-index: 2;
+  flex: none;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.framer-mxzXr .framer-1v4oh4y {
+  flex: none;
+  width: 21px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.framer-mxzXr .framer-1ynw6wm {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.framer-mxzXr .framer-rnb6d7 {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.framer-mxzXr .framer-226viv {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ==========================================================================
+   Framer Mobile Variant (.framer-v-1ol3sqn / .framer-v-e7vfwq)
+   ========================================================================== */
+
+.framer-8v007w-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Base phone collapsed state */
+.framer-mxzXr.framer-v-1ol3sqn {
+  width: 350px;
+  max-width: calc(100vw - 32px);
+  padding: 6px 12px;
+  gap: 16px;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+}
+
+.framer-mxzXr.framer-v-1ol3sqn .framer-18gbe84 {
+  width: 100%;
+  flex: 1 0 0;
+  gap: 0;
+}
+
+.framer-mxzXr.framer-v-1ol3sqn .framer-1qxc2wt {
+  gap: unset;
+  flex: 1 0 0;
+  order: 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Phone expanded state */
+.framer-mxzXr.framer-v-e7vfwq {
+  width: 350px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 20px);
+  padding: 8px 12px 16px;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+}
+
+.framer-mxzXr.framer-v-e7vfwq .framer-18gbe84 {
+  flex-direction: column;
+  flex: 1 0 0;
+  gap: 16px;
+  width: 100%;
+}
+
+.framer-mxzXr.framer-v-e7vfwq .framer-1qxc2wt {
+  gap: unset;
+  order: 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.framer-mxzXr.framer-v-e7vfwq .framer-m1k0id {
+  flex-direction: column;
+  order: 1;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 4px 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.framer-mxzXr.framer-v-e7vfwq .framer-1zb5hk-container {
+  order: 2;
+  width: 100%;
+}
+
+.framer-mxzXr.framer-v-e7vfwq .framer-2DWFg {
+  width: 100%;
+  justify-content: center;
+  padding: 10px 16px;
+}
+
+/* Framer Animated Menu Icon (3 bars) */
+.framer-mzn26x-container {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  flex: none;
+}
+
+.framer-sbalG {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.framer-16op75y,
+.framer-4ih5r9,
+.framer-9mx5jt {
+  position: absolute;
+  left: 3px;
+  width: 18px;
+  height: 2px;
+  background-color: var(--token-fae910b1-58dd-4ef5-8c3c-a28d85da034c, rgb(117, 117, 117));
+  border-radius: 10px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, background-color 0.2s ease, top 0.3s ease;
+  will-change: transform;
+}
+
+.framer-9mx5jt {
+  top: 7px;
+}
+
+.framer-4ih5r9 {
+  top: 11px;
+}
+
+.framer-16op75y {
+  top: 15px;
+}
+
+/* Hover effect */
+.framer-sbalG:hover .framer-9mx5jt,
+.framer-sbalG:hover .framer-4ih5r9,
+.framer-sbalG:hover .framer-16op75y {
+  background-color: rgb(255, 255, 255);
+}
+
+/* Menu Open State (Morphs 3 bars into X) */
+.framer-sbalG.is-open .framer-9mx5jt {
+  top: 11px;
+  transform: rotate(45deg);
+  background-color: rgb(255, 255, 255);
+}
+
+.framer-sbalG.is-open .framer-4ih5r9 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.framer-sbalG.is-open .framer-16op75y {
+  top: 11px;
+  transform: rotate(-45deg);
+  background-color: rgb(255, 255, 255);
+}
+
+

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowDown, Check, Copy, ExternalLink, FileText, Mail, Sparkles, Terminal } from "lucide-react";
 import { personalInfo } from "@/lib/portfolio-data";
+import SideRays from "../ui/SideRays";
 
 // Typewriter hook matching the AI Studio specification
 function useTypewriter(
@@ -41,8 +42,8 @@ function useTypewriter(
 }
 
 export const HeroSection = ({ isLoaded = false }) => {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [buttonsVisible, setButtonsVisible] = useState(false);
+
   const [copied, setCopied] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
 
@@ -70,17 +71,6 @@ export const HeroSection = ({ isLoaded = false }) => {
     return () => clearTimeout(timer);
   }, [isLoaded]);
 
-  // Lock body scroll when mobile navigation menu is active
-  useEffect(() => {
-    if (isMobileNavOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMobileNavOpen]);
 
   // Handle video seeked event
   const handleSeeked = useCallback(() => {
@@ -202,21 +192,6 @@ export const HeroSection = ({ isLoaded = false }) => {
     }
   };
 
-  const navItems = [
-    { label: "About", id: "about" },
-    { label: "Stack", id: "stack" },
-    { label: "Projects", id: "projects" },
-    { label: "Experience", id: "experience" },
-    { label: "Contact", id: "contact" },
-  ];
-
-  const handleNavClick = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="hero"
@@ -237,154 +212,38 @@ export const HeroSection = ({ isLoaded = false }) => {
         onSeeked={handleSeeked}
       />
 
+      {/* Volumetric SideRays Light Beams — in Hero Section only */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true">
+        <SideRays
+          origin="top-right"
+          rayColor1="#FFC46B"
+          rayColor2="#96c8ff"
+          blend={0.6}
+          speed={2.5}
+          intensity={2}
+          spread={2}
+          density={5}
+          sharpness={0.5}
+          falloff={1.6}
+          glow={1}
+          saturation={1}
+          dust={0.2}
+          followMouse={true}
+          mouseInfluence={0.5}
+          opacity={0.85}
+          className="w-full h-full"
+        />
+      </div>
+
       {/* Gentle white gradient on mobile to ensure crisp typography without clashing with character */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white/95 via-white/80 to-transparent pointer-events-none md:hidden" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-r from-white/95 via-white/80 to-transparent pointer-events-none md:hidden" />
 
       {/* Subtle bottom gradient to blend into portfolio chapters */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#101315] via-[#101315]/40 to-transparent pointer-events-none z-[2]" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#101315] via-[#101315]/40 to-transparent pointer-events-none z-[3]" />
 
-      {/* TOP HEADER / NAVBAR */}
-      <header className="relative z-50 w-full px-4 sm:px-8 py-3.5 sm:py-5 flex flex-row justify-between items-center pointer-events-auto">
-        {/* Brand / Logo */}
-        <div className="flex flex-row items-center gap-2 sm:gap-3">
-          <span
-            className="text-[20px] sm:text-[26px] tracking-tight text-black cursor-pointer select-none font-bold font-serif"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            Praveen P
-          </span>
-          <span
-            className="text-[22px] sm:text-[30px] text-black select-none leading-none"
-            style={{ letterSpacing: "-0.02em" }}
-            aria-hidden="true"
-          >
-            ✳︎
-          </span>
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono bg-black/10 text-black border border-black/10 backdrop-blur-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping" />
-            <span>CLOUD &amp; FULL STACK ENGINEER</span>
-          </div>
-        </div>
+      {/* TOP SPACER for Fixed Global Framer Notch Navbar */}
+      <div className="w-full h-16 sm:h-20 pointer-events-none" aria-hidden="true" />
 
-        {/* Desktop Navigation Links */}
-        <nav
-          className="hidden md:flex flex-row items-center text-[18px] lg:text-[20px] text-black font-medium"
-          aria-label="Main Navigation"
-        >
-          {navItems.map((item, idx) => (
-            <React.Fragment key={item.id}>
-              <button
-                type="button"
-                onClick={() => handleNavClick(item.id)}
-                className="cursor-pointer hover:opacity-60 transition-opacity bg-transparent border-0 p-0 text-[18px] lg:text-[20px] text-black inline-block font-normal"
-              >
-                {item.label}
-              </button>
-              {idx < navItems.length - 1 && <span className="select-none mx-2 text-black/30">/</span>}
-            </React.Fragment>
-          ))}
-        </nav>
-
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
-          <a
-            href={`mailto:${personalInfo.email}`}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium bg-black text-white hover:bg-black/85 transition-all cursor-pointer shadow-md"
-          >
-            <Mail className="w-3.5 h-3.5" />
-            <span>Get in touch</span>
-          </a>
-        </div>
-
-        {/* Mobile Hamburger Button */}
-        <button
-          type="button"
-          onClick={() => setIsMobileNavOpen((prev) => !prev)}
-          className="md:hidden flex flex-col justify-center items-center gap-[5px] w-9 h-9 p-1.5 rounded-lg bg-black/10 border border-black/15 cursor-pointer focus:outline-none"
-          aria-label={isMobileNavOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMobileNavOpen}
-        >
-          <span
-            className={`w-5 h-[2px] bg-black transform transition-all duration-300 ${
-              isMobileNavOpen ? "rotate-45 translate-y-[7px]" : ""
-            }`}
-          />
-          <span
-            className={`w-5 h-[2px] bg-black transition-opacity duration-300 ${
-              isMobileNavOpen ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`w-5 h-[2px] bg-black transform transition-all duration-300 ${
-              isMobileNavOpen ? "-rotate-45 -translate-y-[7px]" : ""
-            }`}
-          />
-        </button>
-      </header>
-
-      {/* Mobile Overlay Menu */}
-      <div
-        className={`fixed inset-0 z-40 bg-white/98 backdrop-blur-md flex flex-col justify-between px-6 sm:px-8 pt-24 pb-10 transition-all duration-300 md:hidden ${
-          isMobileNavOpen
-            ? "opacity-100 pointer-events-auto translate-y-0"
-            : "opacity-0 pointer-events-none -translate-y-4"
-        }`}
-        aria-hidden={!isMobileNavOpen}
-      >
-        <div className="flex flex-col space-y-5">
-          <div className="flex items-center justify-between pb-3 border-b border-black/10">
-            <span className="text-xs font-mono uppercase tracking-widest text-black/50">
-              // Navigation
-            </span>
-            <button
-              type="button"
-              onClick={() => setIsMobileNavOpen(false)}
-              className="text-xs font-mono px-3 py-1 rounded-full border border-black/20 text-black hover:bg-black hover:text-white transition-colors"
-            >
-              CLOSE ✕
-            </button>
-          </div>
-
-          <div className="flex flex-col space-y-4">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => {
-                  setIsMobileNavOpen(false);
-                  handleNavClick(item.id);
-                }}
-                className="text-[28px] sm:text-[32px] font-medium text-black text-left cursor-pointer hover:opacity-60 transition-opacity font-serif py-1 flex items-center justify-between"
-              >
-                <span>{item.label}</span>
-                <span className="text-xs font-mono text-black/40">→</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="pt-6 border-t border-black/10 space-y-3">
-          <a
-            href={personalInfo.resumePdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMobileNavOpen(false)}
-            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-xs font-mono tracking-wider uppercase bg-black text-white hover:bg-black/85 transition-all shadow-md"
-          >
-            <FileText className="w-4 h-4" />
-            <span>DOWNLOAD CV / RÉSUMÉ</span>
-          </a>
-
-          <a
-            href={`mailto:${personalInfo.email}`}
-            onClick={() => setIsMobileNavOpen(false)}
-            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl font-medium text-xs font-mono tracking-wider uppercase border border-black/25 text-black hover:bg-black/5 transition-all"
-          >
-            <Mail className="w-4 h-4" />
-            <span>mr5praveen55@gmail.com</span>
-          </a>
-        </div>
-      </div>
 
       {/* HERO MAIN INTERACTIVE CONTENT */}
       <div className="relative z-[3] w-full flex-1 flex flex-col justify-center py-6 sm:py-10 md:py-0 px-4 sm:px-8 md:px-12 overflow-hidden pointer-events-none">

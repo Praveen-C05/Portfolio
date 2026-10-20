@@ -28,7 +28,7 @@ export const Home = () => {
       <SceneCanvas />
 
       {/* Global Fixed Navbar with Scroll Progress */}
-      <Navbar />
+      <Navbar isLoaded={isLoaded} />
 
       {/* Main Narrative Chapters — Prerendered in background and revealed smoothly once 100% ready */}
       <main

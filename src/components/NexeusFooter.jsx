@@ -20,7 +20,7 @@ export const NexeusFooter = () => {
               runEntranceAnimation();
             }
             if (footerVideoRef.current) {
-              footerVideoRef.current.play().catch(() => {});
+              footerVideoRef.current.play().catch(() => { });
             }
           } else {
             if (footerVideoRef.current) {
@@ -185,9 +185,8 @@ export const NexeusFooter = () => {
     <div
       id="footer"
       ref={containerRef}
-      className={`nexeus-root relative w-full overflow-hidden select-none text-white ${
-        !hasEntered ? "nexeus-pre-enter" : ""
-      }`}
+      className={`nexeus-root relative w-full overflow-hidden select-none text-white ${!hasEntered ? "nexeus-pre-enter" : ""
+        }`}
     >
       <style>{`
         .nexeus-root {
@@ -697,7 +696,7 @@ export const NexeusFooter = () => {
                     <path d="M 1.28 54.87 L 1.28 45.13 L 42.42 45.13 L 38.09 54.87 Z" fill="#fff" />
                     <path d="M 12.10 20.53 L 20.53 12.10 L 49.62 41.20 L 38.13 46.55 Z" fill="#fff" />
                   </svg>
-                  <span className="nexeus-wordmark">Nexeus</span>
+                  <span className="nexeus-wordmark">PRAVEEN</span>
                 </div>
                 <p className="nexeus-tagline">
                   Change your future today using high-performance engineering and modern systems. Everything you need starts here.
