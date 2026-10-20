@@ -8,16 +8,16 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(import.meta.dirname || "", "./src"),
     },
   },
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: {
-          three: ["three"],
-          gsap: ["gsap", "gsap/ScrollTrigger.js"],
+        manualChunks(id) {
+          if (id.includes("node_modules/three")) return "three";
+          if (id.includes("node_modules/gsap")) return "gsap";
         },
       },
     },
